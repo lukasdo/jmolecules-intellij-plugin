@@ -6,15 +6,22 @@ import com.intellij.ide.projectView.ProjectViewNode;
 import com.intellij.ide.projectView.ProjectViewNodeDecorator;
 import com.intellij.psi.PsiManager;
 import org.jetbrains.annotations.Nullable;
+import org.xmolecules.ide.intellij.settings.SettingsState;
+import org.xmolecules.ide.intellij.settings.ViewChoice;
 
 import java.util.stream.Collectors;
 
 class JMoleculesDecorator implements ProjectViewNodeDecorator {
 
+	SettingsState settings = SettingsState.getInstance();
+
 	@Override
 	public void decorate(
 			final @Nullable ProjectViewNode<?> node,
 			final @Nullable PresentationData data) {
+		if(settings.viewIndex == ViewChoice.NODES.ordinal()){
+			return;
+		}
 		if (data == null || node == null) {
 			return;
 		}

@@ -27,6 +27,8 @@ import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiManager;
 import org.jetbrains.annotations.NotNull;
+import org.xmolecules.ide.intellij.settings.SettingsState;
+import org.xmolecules.ide.intellij.settings.ViewChoice;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -45,11 +47,17 @@ import java.util.stream.Collectors;
  */
 class JMoleculesTreeStructureProvider implements TreeStructureProvider {
 
+    SettingsState settingsState = SettingsState.getInstance();
+
     @Override
     public @NotNull Collection<AbstractTreeNode<?>> modify(
             final @NotNull AbstractTreeNode<?> parent,
             final @NotNull Collection<AbstractTreeNode<?>> children,
             final ViewSettings settings) {
+
+        if(settingsState.viewIndex == ViewChoice.LABELS.ordinal()){
+            return new ArrayList<>(children);
+        }
         if (!(parent instanceof PsiDirectoryNode)) {
             return children;
         }

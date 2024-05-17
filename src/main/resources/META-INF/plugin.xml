@@ -36,6 +36,13 @@
         <facetType implementation="nexos.intellij.ddd.jddd.ArchitectureLayeredType"/>
         <frameworkSupport implementation="nexos.intellij.ddd.jddd.Support"/>
         <customScopesProvider implementation="nexos.intellij.ddd.Scopes"/>
+        <applicationConfigurable
+                parentId="tools"
+                instance="org.xmolecules.ide.intellij.settings.SettingsConfigurable"
+                id="org.xmolecules.ide.intellij.settings.SettingsConfigurable"
+                displayName="jMolecules"/>
+        <applicationService
+                serviceImplementation="org.xmolecules.ide.intellij.settings.SettingsState"/>
     </extensions>
     <extensions defaultExtensionNs="com.intellij.framework">
         <type implementation="nexos.intellij.ddd.jddd.CoreFramework"/>
